@@ -1,14 +1,14 @@
-library(raster)
 # install.packages("rgdal")
 # install.packages("RStoolbox")
 # install.packages("rasterdiv")
-# library(rgdal)
+library(rgdal)
 library(RStoolbox)
-# library(rasterdiv)
+library(rasterdiv)
+library(raster)
 
 setwd("C:/Users/gioel/OneDrive - Alma Mater Studiorum Università di Bologna/Magistrale/Monitoring/lab/"
 
-# Exercise: import the first file -> defor1.png -> give it the name l1992
+#import of a raster stack
 l1992 <- brick("defor1.png")
 
 plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
@@ -18,24 +18,22 @@ plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
 # layer 3 = green
 
 
-# Exercise: import the second file -> defor2_.jpg -> give it the name l2006
 l2006 <- brick("defor2.png")
 l2006
 
 plotRGB(l2006, r=1, g=2, b=3, stretch="lin")
 
-# Exercise: plot in a multiframe the two images with one on top of the other
 par(mfrow=c(2,1))
 plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
 plotRGB(l2006, r=1, g=2, b=3, stretch="lin")
 
 # DVI Difference Vegetation Index
 dvi1992 = l1992[[1]] - l1992[[2]]
-# or:
-# dvi1992 = l1992$defor1_.1 - l1992$defor1_.2
+
 dvi1992
 
-cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+#choose a color set      
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) 
 plot(dvi1992, col=cl)
 
 # DVI Difference Vegetation Index
@@ -63,16 +61,15 @@ plot(dvi_dif, col=cld)
 # NDVI 1992
 dvi1992 = l1992[[1]] - l1992[[2]]
 ndvi1992 = dvi1992 / (l1992[[1]] + l1992[[2]])
-# or
-ndvi1992 = (l1992[[1]] - l1992[[2]]) / (l1992[[1]] + l1992[[2]])
+
+#ndvi1992 = (l1992[[1]] - l1992[[2]]) / (l1992[[1]] + l1992[[2]])
 
 cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
 plot(ndvi1992, col=cl)
 
-# multiframe con il plotRGB dell'immagine sopra
-# e l'ndvi sotto
 
-# Multiframe with plotRGB on top of the NDVI image
+
+# multiframe layer for a double print
 par(mfrow=c(2,1))
 plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
 plot(ndvi1992, col=cl)
@@ -92,5 +89,5 @@ plot(si1992,col=cl)
 si2006 <- spectralIndices(l2006, green=3, red=2, nir=1)
 plot(si2006,col=cl)
 
-### rasterdiv
-# plot(copNDVI)
+############## it required rasterdiv
+plot(copNDVI)
