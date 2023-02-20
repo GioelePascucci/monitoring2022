@@ -1,3 +1,6 @@
+#topic:Effect of wildfires on albedo and soil
+#related topics: Global warming in the arctic zone
+
 install.packages("ncdf4")
 install.packages("rnaturalearth")
 install.packages("rnaturalearthdata")
