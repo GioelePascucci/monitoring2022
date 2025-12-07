@@ -1,5 +1,3 @@
-#sometimes species are not found simply because of 
-#inability of operators/researchers to recognize them
 #install.packages("sdm")
 #install.packages("rgdal")
 #install.packages("raster")
@@ -62,4 +60,5 @@ plot(s1, col=cl)
 #like a normal vector we can change names of stack elements
 names(s1) <- c('elevation', 'precipitation', 'temperature', 'vegetation', 'model')
 plot(s1, col=cl)
+
 
